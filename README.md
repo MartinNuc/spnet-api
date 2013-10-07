@@ -3,7 +3,8 @@ spnet-api
 
 Simple API facade for SouthPrague.Net in PHP.
 
-== Features ==
+Features
+--------
 - logging using security token stored in database
 - listing users
 - showing specific user detail
