@@ -1,7 +1,5 @@
 <?php
 
-require_once 'config.php';
-
 /**
  * Model for users
  */
