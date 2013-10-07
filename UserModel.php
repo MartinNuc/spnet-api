@@ -8,7 +8,9 @@ class UserModel
 	// user detail
 	public function getUser($id)
 	{
-		$result = dibi::query('SELECT * FROM [cns_clenove] WHERE [UserID] = %i', $id);
+		$result = dibi::query('SELECT c.UserId as id, c.UserName as username, p.Hodnota as email FROM [cns_clenove] c
+				LEFT JOIN [cns_clenove-properties] p ON (c.UserId=p.UserId AND p.Pole="Email")
+				WHERE [c.UserId] = %i', $id);
 		return $result->fetch();
 	}
 	

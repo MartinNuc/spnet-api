@@ -61,8 +61,9 @@ $app->get('/user/:id', 'authenticate', function ($id) use ($app) {
         $response = array(
             'error' => null,
             'result'    =>  array(
-                'id'   =>  $user['UserID'],
-                'username' =>  $user['UserName'],
+                'id'   =>  $user['id'],
+                'username' =>  $user['username'],
+                'email' =>  $user['email'],
             )
         );
 
