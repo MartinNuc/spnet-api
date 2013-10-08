@@ -106,6 +106,36 @@ $app->get('/user/', 'authenticate', function () use ($app) {
     }
 });
 
+// validate southprague user login
+// !! send post request with Content-Type: application/x-www-form-urlencoded
+$app->post('/validate', 'authenticate', function () use ($app) {
+		$req = $app->request();
+
+    $username = $req->post('username');
+    $password = md5($req->post('password'));
+       
+    $user_model = new UserModel();
+    $users = $user_model->getUsers(NULL, array('UserName' => $username, 'Password' => $password));
+    
+    $res = $app->response();
+    $res['Content-Type'] = 'application/json';
+    if ($users)
+    {
+				$response = array(
+            'error' => null,
+            'result' => true
+        );
+    }
+    else
+    {
+        $response = array(
+            'error' => null,
+            'result' => false
+        );
+    }
+    $res->body(json_encode($response));      
+});
+
 // set security token
 $app->get('/login/:token', function ($token) use ($app) {    
   try {
